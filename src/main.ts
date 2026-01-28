@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalGuards(app.get(AuthGuard));
 
   app.enableCors({
-    origin: 'https://pms-frontend-neon.vercel.app',
+    origin: ['https://pms-frontend-neon.vercel.app', 'http://localhost:5173'],
     credentials: true,
   });
 
