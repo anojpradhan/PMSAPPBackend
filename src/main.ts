@@ -12,15 +12,19 @@ async function bootstrap() {
   app.useGlobalGuards(app.get(AuthGuard));
 
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: 'https://pms-frontend-neon.vercel.app',
     credentials: true,
   });
-
 
   // Debug: log current dir + dist contents
   console.log('Current working directory:', process.cwd());
   console.log('Does dist exist?', fs.existsSync('dist'));
-  console.log('Files in dist:', fs.readdirSync('dist', { withFileTypes: true }).map(f => f.isDirectory() ? `${f.name}/` : f.name));
+  console.log(
+    'Files in dist:',
+    fs
+      .readdirSync('dist', { withFileTypes: true })
+      .map((f) => (f.isDirectory() ? `${f.name}/` : f.name)),
+  );
 
   // Optional: log if main.js exists
   const mainPath = path.join(process.cwd(), 'dist', 'main.js');
